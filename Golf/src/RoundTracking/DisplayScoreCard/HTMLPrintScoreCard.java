@@ -61,21 +61,33 @@ public class HTMLPrintScoreCard extends PrintScoreCard {
 
 
 		//add hole numbers to table.
-		this.addHoleNumbers();
+		AddRowToScoreCard HTMLScoreCard = new AddRowToScoreCardHoleNumber(round.getGolfCourse(),"Hole");
+		htmlString += HTMLScoreCard.getRow();
+		//this.addHoleNumbers();
 
 		//add par to scorecard
-		this.addPar();
+		HTMLScoreCard = new AddRowToScoreCardPar(round.getGolfCourse(),"Par");
+		htmlString += HTMLScoreCard.getRow();
 
 		//add stroke index
-		this.addStrokeIndex();
+		HTMLScoreCard = new AddRowToScoreCardSI(round.getGolfCourse(),"SI");
+		htmlString += HTMLScoreCard.getRow();
 
 		//add net score
-		this.addNetScore();
+		for(PlayerScore playerScore : round.getPlayersScores()){
 
-		//add gross score to scorecard
-		this.addGrossScore();
+			HTMLScoreCard = new AddRowToScoreCardGross(playerScore);
+			htmlString += HTMLScoreCard.getRow();
+			HTMLScoreCard = new AddRowToScoreCardNet(playerScore);
+			htmlString += HTMLScoreCard.getRow();
+			HTMLScoreCard = new AddRowToScoreCardPutts(playerScore);
+			htmlString += HTMLScoreCard.getRow();
+			HTMLScoreCard = new AddRowToScoreCardGIR(playerScore);
+			htmlString += HTMLScoreCard.getRow();
+		}
 
-		this.addPutts();
+
+		//this.addPutts();
 
 		//this.addGIR();
 
@@ -105,100 +117,9 @@ public class HTMLPrintScoreCard extends PrintScoreCard {
 	}
 
 
-	public void addHoleNumbers(){
-		this.addRow("Hole", true, false);
-
-		for(int i=1 ; i<=round.getNumberOfHoles() ; i++){
-			this.addRow(i, false, false);
-			if(i%9 == 0){
-				//print the totals after 9 holes
-				if(i == 9){
-					this.addRow("out", false, false);
-				}
-				else if(i == 18){
-					this.addRow("in", false, false);
-				}
-				else{
-					this.addRow("previous 9", false, false);
-				}
-			}
-		}
-		this.addRow("TOT", false, true);
-
-	}
-	public void addPar() {
-		htmlString += "<tr>"
-				+ "<td style=\"text-align: center;\">par</td>\n";
-		int total = 0;
-		for(int i=1 ; i<=round.getNumberOfHoles() ; i++){
-			htmlString += "<td style=\"text-align: center;\">" + round.getParForHole(i) + "</td>\n";
-			total += round.getParForHole(i);
-			if(i%9 == 0) {
-				htmlString += "<td style=\"text-align: center;\">" + total + "</td>\n";
-				total=0;
-			}
-		}
-		total = 0;
-		for(int i=1 ; i<=round.getNumberOfHoles(); i++ ){
-			total += round.getParForHole(i);
-		}
-		htmlString += "<td style=\"text-align: center;\">" + total + "</td>\n";
-	}
-
-	public void addStrokeIndex() {
-		this.addRow("SI", true, false);
-		for(int i=1 ; i<=round.getNumberOfHoles() ; i++){
-			this.addRow(round.getGolfCourse().getStrokeIndexForHole(i), false, false);
-			if(i%9 == 0) {
-				this.addRow("", false, false);;
-			}
-		}
-		this.addRow("", false, true);
-	}
 
 
-	public void addNetScore(){
 
-		for(PlayerScore playerScore : round.getPlayersScores()){
-			int grandTotal = 0;
-			int total=0;
-
-			this.addRow(playerScore.getPlayerName(), true, false);
-
-			for(int hole=1 ; hole<=round.getNumberOfHoles() ; hole++){
-				total += playerScore.getNetScoreForHole(hole);
-				this.addRow(playerScore.getNetScoreForHole(hole), false, false);
-				if(hole%9 ==0) {
-					grandTotal += total;
-					this.addRow(total, false, false);
-					total=0;
-				}
-			}
-			this.addRow(grandTotal, false, true);
-		}
-	}
-
-	public void addGrossScore(){
-
-		int total=0;
-		int grandTotal=0;
-
-		for(PlayerScore playerScore : round.getPlayersScores()){
-			addRow(playerScore.getPlayerName(),true,false);
-			for(int hole=1 ; hole<=round.getNumberOfHoles() ; hole++){
-				total += playerScore.getGrossScoreForHole(hole);
-				addRow(playerScore.getGrossScoreForHole(hole),false,false);
-				if(hole%9 ==0) {
-					addRow(Integer.toString(total),false,false);
-					grandTotal+=total;
-					total=0;
-				}
-			}
-			addRow(grandTotal,false,true);
-			total=0;
-			grandTotal=0;
-		}
-	}
 
 	public void addPutts(){
 
@@ -253,7 +174,7 @@ public class HTMLPrintScoreCard extends PrintScoreCard {
 	public void addRow(int string, boolean startOfRow, boolean endOfRow){
 		addRow(Integer.toString(string),startOfRow,endOfRow);
 	}
-	
+
 	public void addBirdyRow(int string){
 		htmlString += HTML_BEGIN;
 		htmlString += "<div class=\"circle_green\">" + string + "</div>";
