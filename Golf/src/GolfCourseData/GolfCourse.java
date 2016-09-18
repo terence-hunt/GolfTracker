@@ -46,6 +46,9 @@ public class GolfCourse {
 	public int getStrokeIndexForHole(int holeNumber){
 		return course.get(holeNumber-1).getSI();
 	}
+	public ArrayList<Hole> getCourse(){
+		return course;
+	}
 }
 
 

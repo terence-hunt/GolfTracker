@@ -3,12 +3,13 @@ package RoundTracking.DisplayScoreCard;
 public abstract class AddRowToScoreCard {
 	
 	public String htmlString ="";
-	private static final String HTML_BEGIN = "<td style=\"text-align: center;\">"; 
-	private static final String HTML_END = "</td>\n";
+	protected static final String HTML_BEGIN = "<td style=\"text-align: center;\">"; 
+	protected static final String HTML_END = "</td>\n";
 	
 	public int noOfColumns;
 	public String rowName;
 
+	public abstract int getValue(int i);
 	
 	public void addCell(String string, boolean startOfRow, boolean endOfRow){
 		if(startOfRow){
@@ -24,6 +25,7 @@ public abstract class AddRowToScoreCard {
 		addCell(Integer.toString(string),startOfRow,endOfRow);
 	}
 	
+	
 	public String getRow() {
 		this.addCell(rowName, true, false);
 		
@@ -36,8 +38,6 @@ public abstract class AddRowToScoreCard {
 		addGrandTotal();
 		return htmlString;
 	}
-	
-	public abstract int getValue(int i);
 	
 	public void addTotal(int i){
 		int total = 0;
@@ -54,7 +54,5 @@ public abstract class AddRowToScoreCard {
 		}
 		this.addCell(grandTotal,false,true);
 	}
-	
-	
 }
 

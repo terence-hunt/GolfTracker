@@ -13,27 +13,27 @@ public class ScoreForHole {
 		
 	}
 	
-	public ScoreForHole(int netScore, int numberOfPutts){
-		this.netScore = netScore;
+	public ScoreForHole(int grossScore, int numberOfPutts){
+		this.grossScore = grossScore;
 		this.numberOfPutts = numberOfPutts;
 	}
 	
-	public ScoreForHole(int holeNumber,int netScore, int numberOfPutts, String FIR){
+	public ScoreForHole(int holeNumber,int grossScore, int numberOfPutts, String FIR){
 		this.holeNumber = holeNumber;
-		this.netScore = netScore;
+		this.grossScore = grossScore;
 		this.numberOfPutts = numberOfPutts;
 		this.FIR = FIR;
 	}
 	
 	//this is used for par3
-	public void setScore(int holeNumber,int netScore, int numberOfPutts){
+	public void setScore(int holeNumber,int grossScore, int numberOfPutts){
 		this.holeNumber = holeNumber;
-		this.netScore = netScore;
+		this.grossScore = grossScore;
 		this.numberOfPutts = numberOfPutts;
 	}
-	public void setScore(int holeNumber,int netScore, int numberOfPutts, String FIR){
+	public void setScore(int holeNumber,int grossScore, int numberOfPutts, String FIR){
 		this.holeNumber = holeNumber;
-		this.netScore = netScore;
+		this.grossScore = grossScore;
 		this.numberOfPutts = numberOfPutts;
 		this.FIR = FIR;
 	}
@@ -45,14 +45,14 @@ public class ScoreForHole {
 		else GIR=false;
 	}
 	
-	public void calculateNetScore(float playerHandicap, int holeSI){
+	public void calculateGrossScore(float playerHandicap, int holeSI){
 		int quotant = Math.round(playerHandicap) / 18;
 		int remainder = Math.round(playerHandicap) % 18;
 		
-		grossScore = netScore - quotant;
+		netScore = grossScore - quotant;
 		
 		if(remainder >= holeSI ){
-			grossScore -= 1;
+			netScore -= 1;
 		}
 	}
 	

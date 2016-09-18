@@ -50,7 +50,8 @@ public class RandomRoundFactory implements RoundFactory
 					}
 					scoreForHole.setScore(hole, randint, rand.nextInt(randint),FIR);
 				}
-				scoreForHole.calculateNetScore(player.getHandicap(), course.getStrokeIndexForHole(hole));
+				scoreForHole.calculateGrossScore(player.getHandicap(), course.getStrokeIndexForHole(hole));
+				scoreForHole.setGIR(course.getPar(hole));
 				totalScore.add(scoreForHole);
 			}
 			

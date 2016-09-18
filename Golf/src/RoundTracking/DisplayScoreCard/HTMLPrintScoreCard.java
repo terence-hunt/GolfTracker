@@ -38,14 +38,25 @@ public class HTMLPrintScoreCard extends PrintScoreCard {
 		styleSheet.addRule("pre {font : 14px monaco; color : black; background-color : #fafafa; }");
 
 		// create some simple html as a string
+		//TODO need to work out how to display css code.
+		// this works on this site http://www.w3schools.com/html/tryit.asp?filename=tryhtml_classes_span
 		htmlString = "<html>\n"
 				+"<head>\n"
-				+"<title>circle</title>\n"
-				+"<style type=\"text/css\">.circle_green {\n" 
+				+"<title>circle_birdy</title>\n"
+				+"<style type=\"text/css\">div.circle_birdy {\n" 
 				+ "width:1%;\n"
 				+"padding:10px 11px;\n"
 				+"margin:0 auto;\n"
 				+"border-radius:20px;\n"
+				+"border: 1px solid #B5A4A4;\n"
+				+"width:20px;\n"
+				+"height:20px;\n"
+				+"}"
+				+"div.circle_bogey {\n" 
+				+ "width:1%;\n"
+				+"padding:10px 11px;\n"
+				+"margin:0 auto;\n"
+				+"border-radius:0px;\n"
 				+"border: 1px solid #B5A4A4;\n"
 				+"width:20px;\n"
 				+"height:20px;\n"
@@ -76,7 +87,7 @@ public class HTMLPrintScoreCard extends PrintScoreCard {
 		//add net score
 		for(PlayerScore playerScore : round.getPlayersScores()){
 
-			HTMLScoreCard = new AddRowToScoreCardGross(playerScore);
+			HTMLScoreCard = new AddRowToScoreCardGross(playerScore,round.getGolfCourse());
 			htmlString += HTMLScoreCard.getRow();
 			HTMLScoreCard = new AddRowToScoreCardNet(playerScore);
 			htmlString += HTMLScoreCard.getRow();
@@ -115,72 +126,6 @@ public class HTMLPrintScoreCard extends PrintScoreCard {
 
 		System.out.println(htmlString);
 	}
-
-
-
-
-
-
-	public void addPutts(){
-
-		for(PlayerScore playerScore : round.getPlayersScores()){
-
-			this.addRow("putts", true, false);
-
-			int total=0;
-			int grandTotal=0;
-
-			for(int hole=1 ; hole<=round.getNumberOfHoles() ; hole++){
-				total += playerScore.getPuttsForHole(hole);
-				this.addBirdyRow(playerScore.getPuttsForHole(hole));
-				if(hole%9 ==0) {
-					grandTotal += total;
-					this.addRow(total, false, false);
-					total=0;
-				}
-			}
-			this.addRow(grandTotal, false, true);
-		}
-	}
-	public void addGIR(){
-		htmlString += "<tr>";
-		htmlString += "<td style=\"text-align: center;\">GIR</td>\n";
-
-		int total=0;
-		for(int i=1 ; i<=round.getNumberOfHoles() ; i++){
-			if(round.getGIRBoolForHole(i)) {total +=1;}
-			htmlString += "<td style=\"text-align: center;\">" + round.getGIRforHole(i) + "</td>\n";
-			if(i%9 ==0) {
-				htmlString += "<td style=\"text-align: center;\">" + total + "</td>\n";
-				total=0;
-			}
-		}
-		total=0;
-		for(int i=1 ; i<=round.getNumberOfHoles(); i++ ){
-			if(round.getGIRBoolForHole(i)) {total +=1;}
-		}
-		htmlString += "<td style=\"text-align: center;\">" + total + "</td>\n";
-	}
-	public void addRow(String string, boolean startOfRow, boolean endOfRow){
-		if(startOfRow){
-			htmlString += "<tr>\n";
-		}
-		htmlString += HTML_BEGIN + string + HTML_END;
-
-		if(endOfRow){
-			htmlString += "</tr>\n";
-		}
-	}
-	public void addRow(int string, boolean startOfRow, boolean endOfRow){
-		addRow(Integer.toString(string),startOfRow,endOfRow);
-	}
-
-	public void addBirdyRow(int string){
-		htmlString += HTML_BEGIN;
-		htmlString += "<div class=\"circle_green\">" + string + "</div>";
-		htmlString += HTML_END;
-	}
-
 }
 
 

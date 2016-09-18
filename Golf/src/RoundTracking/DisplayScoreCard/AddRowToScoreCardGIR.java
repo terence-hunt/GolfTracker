@@ -14,9 +14,16 @@ public class AddRowToScoreCardGIR extends AddRowToScoreCard {
 		this.noOfColumns = playerScore.getPlayersScores().size();
 	}
 
+	public String getString(int i) {
+		if(playerScore.getGIRForHole(i)){
+			return "Y";
+		}
+		return "N";
+	}
+	
 	public String getRow() {
 		this.addCell(rowName, true, false);
-
+		
 		for(int i=1 ; i<=noOfColumns ; i++){
 			this.addCell(getString(i), false, false);
 			if(i%9 == 0) {
@@ -25,20 +32,6 @@ public class AddRowToScoreCardGIR extends AddRowToScoreCard {
 		}
 		addGrandTotal();
 		return htmlString;
-	}
-
-
-	public String getString(int i) {
-		if(playerScore.getGIRForHole(i)){
-			return "Y";
-		}
-		return "N";
-	}
-
-	@Override
-	public int getValue(int i) {
-		// TODO Auto-generated method stub
-		return 0;
 	}
 
 	public void addTotal(int i){
@@ -61,5 +54,9 @@ public class AddRowToScoreCardGIR extends AddRowToScoreCard {
 		this.addCell(grandTotal,false,true);
 	}
 
-
+	@Override
+	public int getValue(int i) {
+		// not used for this method
+		return 0;
+	}
 }

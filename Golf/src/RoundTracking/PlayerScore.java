@@ -42,4 +42,7 @@ public class PlayerScore {
 	public int getPuttsForHole(int holeNumber){
 		return scores.get(holeNumber - 1).getNumberOfPutts();
 	}
+	public boolean getGIRForHole(int holeNumber){
+		return scores.get(holeNumber - 1).getGIR();
+	}
 }
