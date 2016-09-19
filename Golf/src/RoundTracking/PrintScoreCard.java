@@ -1,9 +1,7 @@
-package RoundTracking.DisplayScoreCard;
-
-import RoundTracking.GolfRound;
+package RoundTracking;
 
 public abstract class PrintScoreCard {
-	GolfRound round;
+	protected GolfRound round;
 	
 	public abstract void print(GolfRound score);
 	
