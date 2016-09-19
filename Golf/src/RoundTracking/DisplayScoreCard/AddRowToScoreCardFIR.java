@@ -19,8 +19,11 @@ public class AddRowToScoreCardFIR extends AddRowToScoreCardString {
 		else if(playerScore.getFIRForHole(i) == FIREnum.R){
 			return "-->";
 		}
-		else {
+		else if(playerScore.getFIRForHole(i) == FIREnum.S){
 			return "^";
+		}
+		else {
+			return "NR";
 		}
 	}
 	public void addTotal(int i){

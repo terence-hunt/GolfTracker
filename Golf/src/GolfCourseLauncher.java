@@ -41,13 +41,13 @@ public class GolfCourseLauncher {
 		PlayerFactory playerFactory = new StandardListPlayerFactory();
 		ArrayList<Player> players = new ArrayList<Player>();
 		players.add(playerFactory.getPlayer("Terence"));
-		//players.add(playerFactory.getPlayer("Steve"));
+		players.add(playerFactory.getPlayer("Steve"));
 				
 		
 		RoundTrackingInterface round = new RoundTrackingInterface();
 		// could also create factories that load from db or files
-		//RoundFactory factory = new ManualInputRoundFactory(course,players,"Blue");
-		RoundFactory factory = new RandomRoundFactory(course,players,"Blue");
+		RoundFactory factory = new ManualInputRoundFactory(course,players,"Blue");
+		//RoundFactory factory = new RandomRoundFactory(course,players,"Blue");
 		round.scoreRound(factory);
 
 

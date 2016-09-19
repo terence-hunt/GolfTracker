@@ -14,7 +14,7 @@ public class ManualInputRoundFactory implements RoundFactory {
 
 	GolfCourse course;
 	ArrayList<Player> players = new ArrayList<Player>();
-	String tee; //the colour of the tee that the players are useing.
+	String tee; //the colour of the tee that the players are using.
 	//TODO the players can play of different tees, women for example. need to make this a player attribute rather than a round attribute
 
 	public ManualInputRoundFactory(GolfCourse course, ArrayList<Player> players, String tee){
@@ -42,7 +42,7 @@ public class ManualInputRoundFactory implements RoundFactory {
 				boolean validInput = false;
 
 				while(!validInput){
-
+					validInput = false;
 					try{
 						ScoreForHole scoreForHole = new ScoreForHole();
 						
