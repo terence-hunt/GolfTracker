@@ -1,26 +1,19 @@
 package RoundTracking.DisplayScoreCard;
 
 import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.util.ArrayList;
-
 import javax.swing.JEditorPane;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.text.Document;
 import javax.swing.text.html.HTMLEditorKit;
-
 import javax.swing.text.html.StyleSheet;
-
-import PlayerData.Player;
 import RoundTracking.GolfRound;
 import RoundTracking.PlayerScore;
+import RoundTracking.PrintScoreCard;
 
 public class HTMLPrintScoreCard extends PrintScoreCard {
 
 	String htmlString;
-	private static final String HTML_BEGIN = "<td style=\"text-align: center;\">"; 
-	String HTML_END = "</td>\n";
 
 	@Override
 	public void print(GolfRound round) {
@@ -89,19 +82,15 @@ public class HTMLPrintScoreCard extends PrintScoreCard {
 
 			HTMLScoreCard = new AddRowToScoreCardGross(playerScore,round.getGolfCourse());
 			htmlString += HTMLScoreCard.getRow();
-			HTMLScoreCard = new AddRowToScoreCardNet(playerScore);
+			HTMLScoreCard = new AddRowToScoreCardNet(playerScore,round.getGolfCourse());
 			htmlString += HTMLScoreCard.getRow();
 			HTMLScoreCard = new AddRowToScoreCardPutts(playerScore);
 			htmlString += HTMLScoreCard.getRow();
 			HTMLScoreCard = new AddRowToScoreCardGIR(playerScore);
 			htmlString += HTMLScoreCard.getRow();
+			HTMLScoreCard = new AddRowToScoreCardFIR(playerScore);
+			htmlString += HTMLScoreCard.getRow();
 		}
-
-
-		//this.addPutts();
-
-		//this.addGIR();
-
 
 		htmlString += "</body>\n";
 

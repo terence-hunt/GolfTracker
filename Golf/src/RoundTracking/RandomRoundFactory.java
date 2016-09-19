@@ -3,6 +3,7 @@ package RoundTracking;
 import java.util.ArrayList;
 import java.util.Random;
 
+import Data.ConfigurationSettings.FIREnum;
 import GolfCourseData.GolfCourse;
 import PlayerData.Player;
 
@@ -37,16 +38,16 @@ public class RandomRoundFactory implements RoundFactory
 					scoreForHole.setScore(hole, randint, rand.nextInt(randint-1));
 				}
 				else{
-					String FIR = "UNKNOWN";
+					FIREnum FIR = FIREnum.NR;
 					int temp = rand.nextInt(4);
 					if(temp == 0){
-						FIR = "L";
+						FIR = FIREnum.L;
 					}
 					if (temp == 1 || temp == 3){
-						FIR = "S";
+						FIR = FIREnum.S;
 					}
 					if (temp == 2){
-						FIR = "R";
+						FIR = FIREnum.R;
 					}
 					scoreForHole.setScore(hole, randint, rand.nextInt(randint),FIR);
 				}

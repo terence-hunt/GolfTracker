@@ -3,15 +3,12 @@ package RoundTracking.DisplayScoreCard;
 import GolfCourseData.GolfCourse;
 import RoundTracking.PlayerScore;
 
-public class AddRowToScoreCardGross extends AddRowToScoreCard {
-
-	PlayerScore playerScore;
-	GolfCourse course;
+public class AddRowToScoreCardGross extends AddRowToScoreCardScore {
 
 	public AddRowToScoreCardGross(PlayerScore playerScore, GolfCourse course){
 		this.playerScore = playerScore;
 		this.course = course;
-		this.rowName = playerScore.getPlayerName() + " gross";
+		this.rowName = playerScore.getPlayer().getPlayerName() + " gross";
 		this.noOfColumns = playerScore.getPlayersScores().size();
 	}
 
@@ -20,36 +17,15 @@ public class AddRowToScoreCardGross extends AddRowToScoreCard {
 		return playerScore.getGrossScoreForHole(i);
 	}
 
-	public String getRow() {
-		this.addCell(rowName, true, false);
-
-		for(int i=1 ; i<=noOfColumns ; i++){
-			if(getValue(i) < course.getPar(i)){
-				this.addBirdyCell(getValue(i));
-			}
-			else if(getValue(i) > course.getPar(i)){
-				this.addBogeyCell(getValue(i));
-			}
-			else {
-				this.addCell(getValue(i), false, false);
-			}
-			if(i%9 == 0) {
-				addTotal(i);
-			}
-		}
-		addGrandTotal();
-		return htmlString;
+	@Override
+	public void addTotal(int i) {
+		// TODO Auto-generated method stub
+		
 	}
 
-	public void addBirdyCell(int string){
-		htmlString += HTML_BEGIN;
-		htmlString += "<div class=\"circle_birdy\">" + string + "</div>";
-		htmlString += HTML_END;
+	@Override
+	public void addGrandTotal() {
+		// TODO Auto-generated method stub
+		
 	}
-	public void addBogeyCell(int string){
-		htmlString += HTML_BEGIN;
-		htmlString += "<div class=\"circle_bogey\">" + string + "</div>";
-		htmlString += HTML_END;
-	}
-
 }

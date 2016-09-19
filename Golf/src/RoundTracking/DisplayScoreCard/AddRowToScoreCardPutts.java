@@ -2,13 +2,13 @@ package RoundTracking.DisplayScoreCard;
 
 import RoundTracking.PlayerScore;
 
-public class AddRowToScoreCardPutts extends AddRowToScoreCard {
+public class AddRowToScoreCardPutts extends AddRowToScoreCardInteger {
 
 	PlayerScore playerScore;
 	
 	public AddRowToScoreCardPutts(PlayerScore playerScore){
 		this.playerScore = playerScore;
-		this.rowName = playerScore.getPlayerName() + " putts";
+		this.rowName = playerScore.getPlayer().getPlayerName() + " putts";
 		this.noOfColumns = playerScore.getPlayersScores().size();
 	}
 	

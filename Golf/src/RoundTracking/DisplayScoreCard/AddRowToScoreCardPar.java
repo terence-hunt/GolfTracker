@@ -2,7 +2,7 @@ package RoundTracking.DisplayScoreCard;
 
 import GolfCourseData.GolfCourse;
 
-public class AddRowToScoreCardPar extends AddRowToScoreCard {
+public class AddRowToScoreCardPar extends AddRowToScoreCardInteger {
 
 	GolfCourse course;
 	

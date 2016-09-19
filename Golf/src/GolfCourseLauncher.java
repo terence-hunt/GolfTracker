@@ -1,7 +1,4 @@
 import java.util.ArrayList;
-import java.util.Scanner;
-
-import Data.ScannerSingleton;
 import GolfCourseData.*;
 import PlayerData.Player;
 import PlayerData.*;
@@ -25,7 +22,7 @@ public class GolfCourseLauncher {
 
 	public void go(){
 		System.out.println("Welcome to the golf statistics tracker, what course would you like to play?");
-		Scanner in = ScannerSingleton.getScanner();
+		//Scanner in = ScannerSingleton.getScanner();
 		//String value = in.nextLine();
 		
 		String value = "st Andrews";
@@ -44,11 +41,12 @@ public class GolfCourseLauncher {
 		PlayerFactory playerFactory = new StandardListPlayerFactory();
 		ArrayList<Player> players = new ArrayList<Player>();
 		players.add(playerFactory.getPlayer("Terence"));
-		players.add(playerFactory.getPlayer("Steve"));
+		//players.add(playerFactory.getPlayer("Steve"));
 				
 		
 		RoundTrackingInterface round = new RoundTrackingInterface();
 		// could also create factories that load from db or files
+		//RoundFactory factory = new ManualInputRoundFactory(course,players,"Blue");
 		RoundFactory factory = new RandomRoundFactory(course,players,"Blue");
 		round.scoreRound(factory);
 

@@ -1,14 +1,14 @@
 package RoundTracking.DisplayScoreCard;
 
+import GolfCourseData.GolfCourse;
 import RoundTracking.PlayerScore;
 
-public class AddRowToScoreCardNet extends AddRowToScoreCard {
-
-	PlayerScore playerScore;
+public class AddRowToScoreCardNet extends AddRowToScoreCardScore {
 	
-	public AddRowToScoreCardNet(PlayerScore playerScore){
+	public AddRowToScoreCardNet(PlayerScore playerScore, GolfCourse course){
 		this.playerScore = playerScore;
-		this.rowName = playerScore.getPlayerName() + " Net";
+		this.course = course;
+		this.rowName = playerScore.getPlayer().getPlayerName() + " Net";
 		this.noOfColumns = playerScore.getPlayersScores().size();
 	}
 	
@@ -16,5 +16,4 @@ public class AddRowToScoreCardNet extends AddRowToScoreCard {
 	public int getValue(int i) {
 		return playerScore.getNetScoreForHole(i);
 	}
-
 }

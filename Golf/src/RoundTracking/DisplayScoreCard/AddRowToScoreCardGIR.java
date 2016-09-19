@@ -1,37 +1,13 @@
 package RoundTracking.DisplayScoreCard;
 
-import GolfCourseData.GolfCourse;
 import RoundTracking.PlayerScore;
 
-public class AddRowToScoreCardGIR extends AddRowToScoreCard {
-
-	PlayerScore playerScore;
-	GolfCourse course;
+public class AddRowToScoreCardGIR extends AddRowToScoreCardString {
 
 	public AddRowToScoreCardGIR(PlayerScore playerScore){
 		this.playerScore = playerScore;
-		this.rowName = playerScore.getPlayerName() + " GIR";
+		this.rowName = playerScore.getPlayer().getPlayerName() + " GIR";
 		this.noOfColumns = playerScore.getPlayersScores().size();
-	}
-
-	public String getString(int i) {
-		if(playerScore.getGIRForHole(i)){
-			return "Y";
-		}
-		return "N";
-	}
-	
-	public String getRow() {
-		this.addCell(rowName, true, false);
-		
-		for(int i=1 ; i<=noOfColumns ; i++){
-			this.addCell(getString(i), false, false);
-			if(i%9 == 0) {
-				addTotal(i);
-			}
-		}
-		addGrandTotal();
-		return htmlString;
 	}
 
 	public void addTotal(int i){
@@ -55,8 +31,10 @@ public class AddRowToScoreCardGIR extends AddRowToScoreCard {
 	}
 
 	@Override
-	public int getValue(int i) {
-		// not used for this method
-		return 0;
+	public String getValue(int i) {
+		if(playerScore.getGIRForHole(i)){
+			return "Y";
+		}
+		return "N";
 	}
 }

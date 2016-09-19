@@ -1,13 +1,14 @@
 package RoundTracking;
 
+import Data.ConfigurationSettings.FIREnum;
+
 public class ScoreForHole {
 	int holeNumber;
 	int netScore;
 	int grossScore;
-	String FIR;
+	FIREnum FIR;
 	boolean GIR;
 	int numberOfPutts;
-
 	
 	public ScoreForHole(){
 		
@@ -18,7 +19,7 @@ public class ScoreForHole {
 		this.numberOfPutts = numberOfPutts;
 	}
 	
-	public ScoreForHole(int holeNumber,int grossScore, int numberOfPutts, String FIR){
+	public ScoreForHole(int holeNumber,int grossScore, int numberOfPutts, FIREnum FIR){
 		this.holeNumber = holeNumber;
 		this.grossScore = grossScore;
 		this.numberOfPutts = numberOfPutts;
@@ -27,11 +28,9 @@ public class ScoreForHole {
 	
 	//this is used for par3
 	public void setScore(int holeNumber,int grossScore, int numberOfPutts){
-		this.holeNumber = holeNumber;
-		this.grossScore = grossScore;
-		this.numberOfPutts = numberOfPutts;
+		setScore(holeNumber, grossScore, numberOfPutts, FIREnum.NR);
 	}
-	public void setScore(int holeNumber,int grossScore, int numberOfPutts, String FIR){
+	public void setScore(int holeNumber,int grossScore, int numberOfPutts, FIREnum FIR){
 		this.holeNumber = holeNumber;
 		this.grossScore = grossScore;
 		this.numberOfPutts = numberOfPutts;
@@ -67,6 +66,9 @@ public class ScoreForHole {
 	}
 	public boolean getGIR(){
 		return GIR;
+	}
+	public FIREnum getFIR(){
+		return FIR;
 	}
 }
 
