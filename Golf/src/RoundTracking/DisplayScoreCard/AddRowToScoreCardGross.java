@@ -16,16 +16,4 @@ public class AddRowToScoreCardGross extends AddRowToScoreCardScore {
 	public int getValue(int i) {
 		return playerScore.getGrossScoreForHole(i);
 	}
-
-	@Override
-	public void addTotal(int i) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void addGrandTotal() {
-		// TODO Auto-generated method stub
-		
-	}
 }

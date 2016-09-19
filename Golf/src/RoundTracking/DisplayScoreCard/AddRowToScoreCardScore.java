@@ -30,8 +30,26 @@ public abstract class AddRowToScoreCardScore extends AddRowToScoreCard {
 	}
 	
 	public abstract int getValue(int i);
-	public abstract void addTotal(int i);
-	public abstract void addGrandTotal();
+	
+	public void addTotal(int i){
+		int total = 0;
+		for(int hole=i ; hole > i-9 ; hole--){
+			if(playerScore.getGIRForHole(hole)){
+				total += 1;
+			}
+		}
+		this.addCell(total,false,false);
+	}
+
+	public void addGrandTotal(){
+		int grandTotal = 0;
+		for(int hole =1 ; hole<=noOfColumns ; hole++){
+			if(playerScore.getGIRForHole(hole)){
+				grandTotal += 1;
+			}
+		}
+		this.addCell(grandTotal,false,true);
+	}
 
 	public void addBirdyCell(int string){
 		htmlString += HTML_BEGIN;
