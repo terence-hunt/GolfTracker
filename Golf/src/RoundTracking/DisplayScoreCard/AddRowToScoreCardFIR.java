@@ -14,7 +14,7 @@ public class AddRowToScoreCardFIR extends AddRowToScoreCardString {
 	@Override
 	public String getValue(int i) {
 		if(playerScore.getFIRForHole(i) == FIREnum.L){
-			return "<--";
+			return "*<--";
 		}
 		else if(playerScore.getFIRForHole(i) == FIREnum.R){
 			return "-->";

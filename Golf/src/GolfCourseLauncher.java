@@ -46,8 +46,8 @@ public class GolfCourseLauncher {
 		
 		RoundTrackingInterface round = new RoundTrackingInterface();
 		// could also create factories that load from db or files
-		RoundFactory factory = new ManualInputRoundFactory(course,players,"Blue");
-		//RoundFactory factory = new RandomRoundFactory(course,players,"Blue");
+		//RoundFactory factory = new ManualInputRoundFactory(course,players,"Blue");
+		RoundFactory factory = new RandomRoundFactory(course,players,"Blue");
 		round.scoreRound(factory);
 
 

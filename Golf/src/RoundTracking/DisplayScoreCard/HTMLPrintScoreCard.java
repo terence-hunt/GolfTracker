@@ -57,7 +57,7 @@ public class HTMLPrintScoreCard extends PrintScoreCard {
 				+"</style>\n"
 				+"</head>\n"
 				+ "<body>\n"
-				+ "<h1>" + round.getCourseName() + "</h1>\n"
+				+ "<h1>" + round.getGolfCourse().getCourseName() + "</h1>\n"
 				+ "<h2>" + round.getDateOfRound() + "</h2>\n"
 				+ "<p>This is some sample text</p>\n"
 				+ "<tr class=\"top bordertop\">"

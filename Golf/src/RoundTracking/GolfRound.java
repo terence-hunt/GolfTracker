@@ -22,23 +22,8 @@ public class GolfRound {
 		this.course = course;
 	}
 	
-	public String getCourseName(){
-		return course.getCourseName();
-	}
 	public String getDateOfRound(){
 		return dateFormat.format(dateOfRound);
-	}
-	public int getNumberOfHoles(){
-		return course.getNumberOfHoles();
-	}
-	public int getParForHole(int holeNumber){
-		return course.getPar(holeNumber);
-	}
-	public int getStrokeIndexForHole(int holeNumber){
-		return course.getStrokeIndexForHole(holeNumber);
-	}
-	public String getPlayerName(int playerNumber){
-		return playersScores.get(playerNumber).getPlayer().getPlayerName();
 	}
 	public PlayerScore getPlayer(int playerNumber){
 		return playersScores.get(playerNumber);

@@ -8,6 +8,9 @@ public abstract class AddRowToScoreCardScore extends AddRowToScoreCard {
 	GolfCourse course;
 	PlayerScore playerScore;
 	
+	public abstract int getValue(int i);
+	
+	
 	public String getRow() {
 		this.addCell(rowName, true, false);
 
@@ -29,14 +32,12 @@ public abstract class AddRowToScoreCardScore extends AddRowToScoreCard {
 		return htmlString;
 	}
 	
-	public abstract int getValue(int i);
+	
 	
 	public void addTotal(int i){
 		int total = 0;
 		for(int hole=i ; hole > i-9 ; hole--){
-			if(playerScore.getGIRForHole(hole)){
-				total += 1;
-			}
+			total += getValue(hole);
 		}
 		this.addCell(total,false,false);
 	}
@@ -44,9 +45,7 @@ public abstract class AddRowToScoreCardScore extends AddRowToScoreCard {
 	public void addGrandTotal(){
 		int grandTotal = 0;
 		for(int hole =1 ; hole<=noOfColumns ; hole++){
-			if(playerScore.getGIRForHole(hole)){
-				grandTotal += 1;
-			}
+			grandTotal += getValue(hole);
 		}
 		this.addCell(grandTotal,false,true);
 	}
