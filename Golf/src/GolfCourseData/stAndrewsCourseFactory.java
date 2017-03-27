@@ -4,9 +4,10 @@ import java.util.ArrayList;
 
 public class stAndrewsCourseFactory extends GolfCourseFactory {
 	//The old course at st Andrews
-	String courseName="St Andrews";
 	
 	public ArrayList<Hole> createGolfCourse(){ 
+		courseName="St Andrews";
+		
 		ArrayList<Hole> course = new ArrayList<Hole>();
 		
 		course.add(new Hole(new HoleYardage(339,0,355,376),1,4,10));

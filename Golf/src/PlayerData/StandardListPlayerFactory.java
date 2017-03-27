@@ -2,6 +2,8 @@ package PlayerData;
 
 import java.util.Date;
 
+import PlayerData.GolfClubs.StandardSetClubsFactory;
+
 public class StandardListPlayerFactory extends PlayerFactory{
 
 	public StandardListPlayerFactory(){
@@ -20,13 +22,13 @@ public class StandardListPlayerFactory extends PlayerFactory{
 	}
 
 	public void createTerence(){
-		player = new Player("Terence Hunt",new Date(611884800),15.0f);
+		player = new Player("Terence Hunt",new Date(611884800),15.0f,new StandardSetClubsFactory("standard"));
 	}
 	public void createSteve(){
-		player = new Player("Steve Hart",new Date(428544000),28.0f);
+		player = new Player("Steve Hart",new Date(428544000),28.0f,new StandardSetClubsFactory("standard"));
 	}
 	public void createEmpty() {
-		player = new Player("Does not exist",new Date(0),0);
+		player = new Player("Does not exist",new Date(0),0,new StandardSetClubsFactory("standard"));
 	}
 
 	@Override

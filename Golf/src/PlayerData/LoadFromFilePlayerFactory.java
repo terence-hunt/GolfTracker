@@ -3,12 +3,14 @@ package PlayerData;
 import java.io.File;
 import java.util.Date;
 
+import PlayerData.GolfClubs.StandardSetClubsFactory;
+
 public class LoadFromFilePlayerFactory extends PlayerFactory {
 
 	public Player create(String fileName){
 		File file = new File(fileName);
 		//TODO add code to read the file and create the player from the information in the file
-		return new Player("Does not exist",new Date(0),0);
+		return new Player("Does not exist",new Date(0),0, new StandardSetClubsFactory("standard"));
 	}
 
 	@Override

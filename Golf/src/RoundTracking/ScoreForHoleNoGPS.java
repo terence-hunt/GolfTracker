@@ -2,31 +2,22 @@ package RoundTracking;
 
 import Data.ConfigurationSettings.FIREnum;
 
-public class ScoreForHole {
-	int holeNumber;
-	int netScore;
-	int grossScore;
-	FIREnum FIR;
-	boolean GIR;
+public class ScoreForHoleNoGPS extends ScoreForHole {
+
 	int numberOfPutts;
+	int grossScore;
 	
-	public ScoreForHole(){
+	public ScoreForHoleNoGPS(){
 		
 	}
 	
-	public ScoreForHole(int grossScore, int numberOfPutts){
-		this.grossScore = grossScore;
-		this.numberOfPutts = numberOfPutts;
-	}
-	
-	public ScoreForHole(int holeNumber,int grossScore, int numberOfPutts, FIREnum FIR){
+	public ScoreForHoleNoGPS(int holeNumber,int grossScore, int numberOfPutts, FIREnum FIR){
 		this.holeNumber = holeNumber;
 		this.grossScore = grossScore;
 		this.numberOfPutts = numberOfPutts;
 		this.FIR = FIR;
 	}
 	
-	//this is used for par3
 	public void setScore(int holeNumber,int grossScore, int numberOfPutts){
 		setScore(holeNumber, grossScore, numberOfPutts, FIREnum.NR);
 	}
@@ -43,8 +34,7 @@ public class ScoreForHole {
 		}
 		else GIR=false;
 	}
-	
-	public void calculateGrossScore(float playerHandicap, int holeSI){
+	public void calculateNetScore(float playerHandicap, int holeSI){
 		int quotant = Math.round(playerHandicap) / 18;
 		int remainder = Math.round(playerHandicap) % 18;
 		
@@ -54,22 +44,35 @@ public class ScoreForHole {
 			netScore -= 1;
 		}
 	}
-	
-	public int getGrossScore(){
-		return grossScore;
-	}
-	public int getNetScore(){
-		return netScore;
-	}
-	public int getNumberOfPutts(){
-		return numberOfPutts;
-	}
-	public boolean getGIR(){
+
+	@Override
+	public boolean getGIR() {
 		return GIR;
 	}
-	public FIREnum getFIR(){
-		return FIR;
+
+	@Override
+	public int getGrossScore() {
+		return grossScore;
+	}
+
+	@Override
+	public int getNetScore() {
+		return netScore;
+	}
+
+	@Override
+	public int getNumberOfPutts() {
+		return numberOfPutts;
+	}
+
+	public void setGrossScore(float playerHandicap, int holeSI) {
+		int quotant = Math.round(playerHandicap) / 18;
+		int remainder = Math.round(playerHandicap) % 18;
+		
+		netScore = grossScore - quotant;
+		
+		if(remainder >= holeSI ){
+			netScore -= 1;
+		}
 	}
 }
-
-

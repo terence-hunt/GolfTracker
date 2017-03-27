@@ -1,12 +1,7 @@
 package RoundTracking;
 
 import java.io.File;
-import java.util.ArrayList;
-
-import GolfCourseData.GolfCourse;
-import PlayerData.Player;
 import RoundTracking.DisplayScoreCard.HTMLPrintScoreCard;
-import RoundTracking.DisplayScoreCard.PrintScoreCard;
 
 /**
  * @author tahun
